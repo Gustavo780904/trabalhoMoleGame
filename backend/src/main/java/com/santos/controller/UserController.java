@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.santos.domain.Ranking;
@@ -24,6 +26,12 @@ public class UserController {
 	@Autowired
 	RankingService rankingService;
 
+	@CrossOrigin
+	@GetMapping("/{find-by-level}")
+	public List<Ranking> findByLevel(@RequestParam(value = "level", defaultValue = "") String level) {
+		return rankingService.findByLevel(level);
+	}
+	
 	@CrossOrigin
 	@GetMapping
 	public List<User> findAll() {
